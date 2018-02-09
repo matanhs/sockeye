@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 # Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
@@ -893,7 +892,7 @@ def process_to_text(rawfile, txtfile):
     if not os.path.exists(txtfile) or os.path.getsize(txtfile) == 0:
         logging.info("Processing %s to %s", rawfile, txtfile)
         if rawfile.endswith('.sgm') or rawfile.endswith('.sgml'):
-            with _open(rawfile) as fin, open(txtfile, 'wt') as fout:
+            with _open(rawfile) as fin, open(txtfile, 'wt',encoding='utf-8') as fout:
                 for line in fin:
                     if line.startswith('<seg '):
                         print(_clean(re.sub(r'<seg.*?>(.*)</seg>.*?', '\\1', line)), file=fout)
@@ -912,9 +911,9 @@ def print_test_set(test_set, langpair, side):
 
     where = download_test_set(test_set, langpair)
     infile = where[0] if side == 'src' else where[1]
-    with open(infile) as fin:
+    with open(infile, 'r' ,encoding='utf-8') as fin:
         for line in fin:
-            print(line.rstrip())
+            print(line.rstrip().encode('utf-8'))
 
 
 def download_test_set(test_set, langpair=None):

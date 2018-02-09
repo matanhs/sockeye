@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 # Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
@@ -28,7 +29,7 @@ import os
 
 def get_version():
     VERSION_RE = re.compile(r'''VERSION\s+=\s+['"]([0-9.]+)['"]''')
-    init = open(os.path.join(os.path.dirname(__file__), 'sacrebleu.py')).read()
+    init = open(os.path.join(os.path.dirname(__file__), 'sacrebleu.py'), encoding='utf-8').read()
     return VERSION_RE.search(init).group(1)
 
 setup(
